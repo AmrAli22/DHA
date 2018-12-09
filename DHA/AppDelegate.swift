@@ -13,7 +13,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    var CatId : String?
+    var img : [UIImage] = []
+    var PDF : [Data] = []
+    var Vedio = [Data]()
+    var Voice = [Data]()
+    var Q2_Answer = [String]()
+    var Q4_Answer = [String]()
+    var name : String = ""
+    var Date : String = ""
+    var Time : String = ""
+    var Q1_Answer : String?
+    var Q3_Answer : String?
+    var valueOfQ3 : String?
+    var Q5_Answer : String?
+    var noteOfQ5  : String?
+    var location  : String?
+    var id        : String?
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

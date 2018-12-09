@@ -16,9 +16,11 @@ class Q5ViewController: UIViewController {
     @IBOutlet weak var BtnNo: CheckBox!
     @IBOutlet weak var TxtFieldNote: UITextField!
     
+     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     ///////ReportAssembly
     
-    let ReportCatID = CollectOrRepoViewController(nibName: "CollectOrRepoViewController", bundle: nil).ReceivedCatagoryID
+  /*  let ReportCatID = CollectOrRepoViewController(nibName: "CollectOrRepoViewController", bundle: nil).ReceivedCatagoryID
     let ReportName = StartRepViewController(nibName: "StartRepViewController", bundle: nil).ReportName
     let ReportDate = StartRepViewController(nibName: "StartRepViewController", bundle: nil).ReportDate
     let ReportTime = StartRepViewController(nibName: "StartRepViewController", bundle: nil).ReportTime
@@ -30,7 +32,7 @@ class Q5ViewController: UIViewController {
     let Q3AnswerType = Q3ViewController(nibName: "Q3ViewController", bundle: nil).Q3AnswerType
     let Q4Answer = Q4ViewController(nibName: "Q4ViewController", bundle: nil).Q4Answer
     var Q5Answer = ""
-    var Q5Note = ""
+    var Q5Note = "" */
      ///////ReportAssembly
     
     override func viewDidLoad() {
@@ -50,75 +52,76 @@ class Q5ViewController: UIViewController {
     }
     @IBAction func BtnActSave(_ sender: Any) {
     }
+
     
     func SendReport(){
- 
-            let decoder = JSONDecoder()
-            let _CurrentUser = UserDefaults.standard.data(forKey: "kUser")
-            let CurrentUser = try? decoder.decode(UserModel.self, from: _CurrentUser!)
-            print ("\(CurrentUser)")
-            let CurrentUserToken = CurrentUser?.token
+        
+        let decoder = JSONDecoder()
+        let _CurrentUser = UserDefaults.standard.data(forKey: "kUser")
+        let CurrentUser = try? decoder.decode(UserModel.self, from: _CurrentUser!)
+        print ("\(CurrentUser)")
+        let CurrentUserToken = CurrentUser?.token
         
         
         
-            var  bearer = "Bearer "
-            bearer += CurrentUserToken!
+        var  bearer = "Bearer "
+        bearer += CurrentUserToken!
         
-            let url = "https://safty.herokuapp.com/api/v1/category/\(self.ReportCatID)/reports"
+          let url = "https://safty.herokuapp.com/api/v1/category/\(appDelegate.CatId)/reports"
         
-            let header : [String: String] = [
-                "Authorization" : bearer ,
-                "Content-Type" : "application/json"
-            ]
-        
-        let Parametres : Parameters = [
-            "Q2_Answer" : Q2Answer  ,
-            "Q4_Answer" : Q4Answer  ,
-        "name" : ReportName ,
-        "Date" : ReportDate ,
-        "Time" : ReportTime ,
-        "Q1_Answer" : Q1Answer ,
-        "Q3_Answer" : Q3AnswerType ,
-        "valueOfQ3" : Q3Answer ,
-       "Q5_Answer"  : Q5Answer ,
-      "noteOfQ5"  : Q5Note ,
-        "location"  : ReportLocation ,
-       "id"        : ReportCatID
+        let header : [String: String] = [
+            "Authorization" : bearer ,
+            "Content-Type" : "application/json"
         ]
         
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            for (key, value) in Parametres {
-                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
-            }
-            
-            let data = imageData
-            multipartFormData.append(data, withName: "img", fileName: "ProfilePicture.png", mimeType: "image/png")
-            
-            
-            
-        }, usingThreshold: UInt64.init(), to: URL, method: .post) { (result) in
-            print (result)
-            switch result{
-            case .success(let upload, _, _):
-                upload.responseJSON { (responseData) -> Void in
-                    if((responseData.result.value) != nil) {
-                        let json = JSON(responseData.result.value!)
-                        
-                        
-                    }
-                    
-                    if let err = responseData.error{
-                        
-                        print(err)
-                        return
-                    }
-                    
-                }
-            case .failure(let error):
-                print("Error in upload: \(error.localizedDescription)")
-                
-            }
-        }
+        let Parametres : Parameters = [
+            "Q2_Answer" :   appDelegate.Q2_Answer ,
+            "Q4_Answer" : appDelegate.Q4_Answer  ,
+            "name" : appDelegate.name ,
+            "Date" : appDelegate.Date ,
+            "Time" : appDelegate.Time ,
+            "Q1_Answer" : appDelegate.Q1_Answer! ,
+            "Q3_Answer" : appDelegate.Q3_Answer! ,
+            "valueOfQ3" : appDelegate.valueOfQ3! ,
+            "Q5_Answer"  : appDelegate.Q5_Answer! ,
+            "noteOfQ5"  : appDelegate.noteOfQ5! ,
+            "location"  : appDelegate.location! ,
+            "id"        : appDelegate.id!
+            ] as [String : Any]
         
-    }
+        Alamofire.upload(multipartFormData: { (multipartFormData) in
+            
+            
+            for (key, value) in Parameters {
+            
+             multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+             print("\(key)\(value)")
+                
+             }
+            
+            for image in self.appDelegate.img {
+                
+                let imageData : Data = UIImagePNGRepresentation(image)!
+                multipartFormData.append(imageData, withName: "img")
+                
+                }
+             } ,
+                         usingThreshold:UInt64.init(),
+                         to:url,
+                         method:.post,
+                         headers : header,
+                         encodingCompletion: { encodingResult in
+                            switch encodingResult {
+                            case .success(let upload, _, _):
+                                upload.responseJSON { response in
+                                    debugPrint(response)
+                                }
+                            case .failure(let encodingError):
+                                print(encodingError)
+                            }
+        })
+        
+        ///////////
+        
+    }//ENDOFFUNCUPLOAD
 }

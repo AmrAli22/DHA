@@ -24,6 +24,8 @@ class StartRepViewController: UIViewController {
     var ReportName = ""
     var location   = ""
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,17 +34,15 @@ class StartRepViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yy"
         self.ReportDate = dateFormatter.string(from: self.DatePickerRepDate.date)
-        
-        
-        
+  
         let ReportTimeHour = self.DatePickerRepDate.calendar.component(.hour, from: self.DatePickerRepDate.date)
         let ReportTimeMin = self.DatePickerRepDate.calendar.component(.minute , from: self.DatePickerRepDate.date)
         self.ReportTime = "\(ReportTimeHour) : \(ReportTimeMin)"
         
-        self.ReportName = self.TxtFieldRepName.text!
-        
-        
-        self.location   = self.TxtFieldLocation.text!
+        appDelegate.name = self.TxtFieldRepName.text!
+        appDelegate.Date = dateFormatter.string(from: self.DatePickerRepDate.date)
+        appDelegate.location = self.TxtFieldLocation.text!
+        appDelegate.Time = "\(ReportTimeHour) : \(ReportTimeMin)"
         // Do any additional setup after loading the view.
     }
 
@@ -68,23 +68,8 @@ class StartRepViewController: UIViewController {
 
     @IBAction func BtnActRecord(_ sender: Any) {
     }
-    
-    override func  prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "GoQ1") {
-           // let vc = segue.destination as! Q1ViewController
-            
-           
-            }
-            
 
-          /*  vc.ReportTime = ReportTime
-            vc.ReportDate = ReportDate
-            vc.ReportName = ReportName
-            vc.location = location
-            vc.PhotoArray = PhotoArray */
-            
-        }
-    }
+    
     
     ///PickImages
      
@@ -157,5 +142,5 @@ class StartRepViewController: UIViewController {
             }
         }
     }
-    
+}
 

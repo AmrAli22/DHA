@@ -13,6 +13,8 @@ class Q3ViewController: UIViewController {
     var Q3Answer = ""
     var Q3AnswerType = ""
 
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     @IBOutlet weak var BtnLikLow1: UIButton!
     @IBOutlet weak var BtnLikMed2: UIButton!
     @IBOutlet weak var BtnLikHigh3: UIButton!
@@ -125,43 +127,44 @@ class Q3ViewController: UIViewController {
     
     
     @IBAction func BtnLow1press(_ sender: Any) {
-        self.Q3Answer = "1"
-        self.Q3AnswerType = "low"
+        appDelegate.Q3_Answer = "low"
+        appDelegate.valueOfQ3 = "1"
+        
     }
     @IBAction func BtnLow2Press(_ sender: Any) {
-        self.Q3Answer = "2"
-        self.Q3AnswerType = "low"
+        appDelegate.Q3_Answer = "2"
+        appDelegate.valueOfQ3 = "low"
     }
     @IBAction func BtnMed3Press(_ sender: Any) {
-        self.Q3Answer = "3"
-        self.Q3AnswerType = "Meduim"
+       appDelegate.Q3_Answer = "3"
+        appDelegate.valueOfQ3 = "Meduim"
     }
     
    
     @IBAction func BtnMedLow2Press(_ sender: Any) {
-        self.Q3Answer = "2"
-        self.Q3AnswerType = "low"
+       appDelegate.Q3_Answer = "2"
+       appDelegate.valueOfQ3 = "low"
     }
     @IBAction func BtnMedMed4Press(_ sender: Any) {
-        self.Q3Answer = "4"
-        self.Q3AnswerType = "Meduim"
+       appDelegate.Q3_Answer = "4"
+        appDelegate.valueOfQ3 = "Meduim"
     }
     @IBAction func BtnMedHigh6Press(_ sender: Any) {
-        self.Q3Answer = "6"
-        self.Q3AnswerType = "High"
+        appDelegate.Q3_Answer = "6"
+        appDelegate.valueOfQ3 = "High"
     }
     
     
     @IBAction func BtnMed5Press(_ sender: Any) {
-        self.Q3Answer = "3"
-        self.Q3AnswerType = "Meduim"
+        appDelegate.Q3_Answer = "3"
+        appDelegate.valueOfQ3 = "Meduim"
     }
     @IBAction func BtnHigh6Press(_ sender: Any) {
-        self.Q3Answer = "6"
-        self.Q3AnswerType = "High"
+        appDelegate.Q3_Answer = "6"
+        appDelegate.valueOfQ3 = "High"
     }
     @IBAction func BtnHigh9Press(_ sender: Any) {
-        self.Q3Answer = "9"
-        self.Q3AnswerType = "High"
+        appDelegate.Q3_Answer = "9"
+       appDelegate.valueOfQ3 = "High"
     }
 }

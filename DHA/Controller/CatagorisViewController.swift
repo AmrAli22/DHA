@@ -12,6 +12,9 @@ import SwiftyJSON
 
 class CatagorisViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    
     var CatagoryArray = [CatagoryModel]()
     
     
@@ -43,10 +46,8 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
         
         if let cell = sender as? UICollectionViewCell,
             let indexPath = self.collectionView.indexPath(for: cell) {
-            
-            let vc = segue.destination as! CollectOrRepoViewController //Cast with your DestinationController
-            //Now simply set the title property of vc
-            vc.ReceivedCatagoryID = CatagoryArray[indexPath.row].id
+        
+            appDelegate.CatId = CatagoryArray[indexPath.row].id
         }
     }
     

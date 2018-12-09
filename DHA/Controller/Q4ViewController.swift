@@ -18,6 +18,7 @@ class Q4ViewController: UIViewController {
     
     var Q4Answer = [String]()
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class Q4ViewController: UIViewController {
     @IBAction func BtnActNext(_ sender: Any) {
         if BtnEngineering.isChecked {
             self.Q4Answer.append("Engineering")
+            
         }
         
         if BtnAdministrative.isChecked {
@@ -48,6 +50,9 @@ class Q4ViewController: UIViewController {
         
     }
     
+    @IBAction func BtnActNexWasPressed(_ sender: Any) {
+        appDelegate.Q4_Answer = self.Q4Answer
+    }
     /*
     // MARK: - Navigation
 

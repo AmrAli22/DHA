@@ -18,7 +18,7 @@ class Q2ViewController: UIViewController {
     @IBOutlet weak var BtnCheckEnviroment: CheckBox!
     
     var Q2Answers = [String]()
-    
+     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +53,7 @@ class Q2ViewController: UIViewController {
             self.Q2Answers.append("Enviroment")
         }
         
+        appDelegate.Q2_Answer = self.Q2Answers
         
     }
     

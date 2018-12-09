@@ -10,25 +10,24 @@ import UIKit
 
 class Q1ViewController: UIViewController {
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     @IBOutlet weak var TxtFieldAnswer: UITextField!
     
    
     override func viewDidLoad() {
         super.viewDidLoad()
-      let ReportQ1Answer = self.TxtFieldAnswer.text
+      
         // Do any additional setup after loading the view.
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-       
+ 
+    @IBAction func BtnNextWasPressed(_ sender: Any) {
+        
+        appDelegate.Q1_Answer = self.TxtFieldAnswer.text
+        
     }
-
-    
-    
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
