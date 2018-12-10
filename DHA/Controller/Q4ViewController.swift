@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Q4ViewController: UIViewController {
+class Q4ViewController: UIViewController , UITextFieldDelegate  {
 
     
     @IBOutlet weak var BtnEngineering: CheckBox!
@@ -48,6 +48,12 @@ class Q4ViewController: UIViewController {
             self.Q4Answer.append("Other")
         }
         
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     @IBAction func BtnActNexWasPressed(_ sender: Any) {

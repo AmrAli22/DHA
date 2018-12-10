@@ -12,18 +12,22 @@ import BSImagePicker
 import Photos
 import SwiftyJSON
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController , UITextFieldDelegate {
     
- 
+    @IBOutlet weak var ScrollView: UIScrollView!
+    @IBOutlet weak var BtnUploadPP: UIButton!
+    
     var SelectedAssets = [PHAsset]()
     var PhotoArray = [UIImage]()
+    
+    var PPImage = UIImage()
     
     @IBOutlet weak var TxtFieldUserName: UITextField!
     @IBOutlet weak var TxtFieldEmail: UITextField!
     @IBOutlet weak var TxtFieldPassword: UITextField!
     @IBOutlet weak var TxtFieldPhone: UITextField!
     @IBOutlet weak var TxtFieldEmrgNum: UITextField!
-    @IBOutlet weak var BtnAcceptTerms: UIButton!
+    
     
     
 
@@ -31,8 +35,33 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
 
         TxtFieldEmrgNum.attributedPlaceholder = NSAttributedString(string: "Emergency Number",
-        attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])}
+        attributes: [NSAttributedStringKey.foregroundColor: UIColor.lightGray])
 
+        BtnUploadPP.layer.cornerRadius = 0.5 * BtnUploadPP.bounds.size.width
+        BtnUploadPP.clipsToBounds = true
+        
+        
+        self.TxtFieldEmrgNum.delegate = self
+        self.TxtFieldEmrgNum.placeholder = "Emergency Number"
+        self.TxtFieldEmail.delegate = self
+        self.TxtFieldEmail.placeholder = "Email"
+        self.TxtFieldPhone.delegate = self
+        self.TxtFieldPhone.placeholder = "Phone"
+        self.TxtFieldPassword.delegate = self
+        self.TxtFieldPassword.placeholder = "Password"
+        self.TxtFieldUserName.delegate = self
+        self.TxtFieldUserName.placeholder = "User anem"
+        
+        self.ScrollView.contentSize =  CGSize(width: self.view.frame.size.width , height: 900)
+
+    }
+
+func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    self.view.endEditing(true)
+    return false
+}
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,7 +88,7 @@ class SignupViewController: UIViewController {
         
         let URL =  "https://safty.herokuapp.com/api/v1/signup"
     
-        let imageData = user.img
+        let imageData = UIImagePNGRepresentation(self.PPImage)
         
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             for (key, value) in parameters {
@@ -67,7 +96,7 @@ class SignupViewController: UIViewController {
             }
             
          let data = imageData
-            multipartFormData.append(data, withName: "img", fileName: "ProfilePicture.png", mimeType: "image/png")
+            multipartFormData.append(data!, withName: "img", fileName: "ProfilePicture.png", mimeType: "image/png")
             
             
             
@@ -196,26 +225,24 @@ class SignupViewController: UIViewController {
     
     ///////////// Pick a PP End
     
-    var AcceptTerms : Bool = false
+   /* var AcceptTerms : Bool = false
     @IBAction func BtnActAccTerms(_ sender: Any) {
         if AcceptTerms == false {
              BtnAcceptTerms.setImage(#imageLiteral(resourceName: "check-symbol"), for: .selected)
         } else {
             BtnAcceptTerms.setImage( nil,for: .disabled)
         }
-    }
+    }*/
   
     @IBAction func BtnActUploadPP(_ sender: Any) {
         
-        self.SelectedAssets.removeAll()
-        self.PhotoArray.removeAll()
-        PickImages { (DonePicking) in
-            if DonePicking {
-                print (self.PhotoArray.count)
-                }
-            }
+        
+        CameraHandler.shared.showActionSheet(vc: self)
+        CameraHandler.shared.imagePickedBlock = { (image) in
+            /* get your image here */
+            self.PPImage = image
         }
-    
+    }
     
     
     @IBAction func BtnActLogin(_ sender: Any) {

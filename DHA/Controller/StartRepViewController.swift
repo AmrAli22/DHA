@@ -10,7 +10,7 @@ import UIKit
 import BSImagePicker
 import Photos
 
-class StartRepViewController: UIViewController {
+class StartRepViewController: UIViewController , UITextFieldDelegate {
 
     @IBOutlet weak var TxtFieldLocation: UITextField!
     @IBOutlet weak var TxtFieldRepName: UITextField!
@@ -31,24 +31,43 @@ class StartRepViewController: UIViewController {
         super.viewDidLoad()
         
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy"
-        self.ReportDate = dateFormatter.string(from: self.DatePickerRepDate.date)
-  
-        let ReportTimeHour = self.DatePickerRepDate.calendar.component(.hour, from: self.DatePickerRepDate.date)
-        let ReportTimeMin = self.DatePickerRepDate.calendar.component(.minute , from: self.DatePickerRepDate.date)
-        self.ReportTime = "\(ReportTimeHour) : \(ReportTimeMin)"
+       
         
-        appDelegate.name = self.TxtFieldRepName.text!
-        appDelegate.Date = dateFormatter.string(from: self.DatePickerRepDate.date)
-        appDelegate.location = self.TxtFieldLocation.text!
-        appDelegate.Time = "\(ReportTimeHour) : \(ReportTimeMin)"
+      
         // Do any additional setup after loading the view.
+    }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @IBAction func BtnStartReportAct(_ sender: Any) {
+        
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yy"
+        self.ReportDate = dateFormatter.string(from: self.DatePickerRepDate.date)
+        
+        let ReportTimeHour = self.DatePickerRepDate.calendar.component(.hour, from: self.DatePickerRepDate.date)
+        let ReportTimeMin = self.DatePickerRepDate.calendar.component(.minute , from: self.DatePickerRepDate.date)
+        self.ReportTime = "\(ReportTimeHour) : \(ReportTimeMin)"
+        
+        
+        
+        appDelegate.name = self.TxtFieldRepName.text!
+        appDelegate.Date = dateFormatter.string(from: self.DatePickerRepDate.date)
+        appDelegate.location = self.TxtFieldLocation.text!
+        appDelegate.Time = "\(ReportTimeHour) : \(ReportTimeMin)"
+        
+        
+       
+        
     }
     
     @IBAction func BtnActUploadPhotos(_ sender: Any) {

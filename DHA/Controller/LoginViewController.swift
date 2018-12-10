@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController , UITextFieldDelegate {
 
     @IBOutlet weak var TxtfieldEmail: UITextField!
     @IBOutlet weak var TxtFieldPassword: UITextField!
@@ -19,6 +19,13 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

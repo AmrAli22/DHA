@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Q1ViewController: UIViewController {
+class Q1ViewController: UIViewController , UITextFieldDelegate  {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -23,11 +23,17 @@ class Q1ViewController: UIViewController {
     }
     
  
-    @IBAction func BtnNextWasPressed(_ sender: Any) {
-        
+    @IBAction func FinishTyping(_ sender: Any) {
         appDelegate.Q1_Answer = self.TxtFieldAnswer.text
-        
+        print("Q1 = \(self.TxtFieldAnswer.text)" )
     }
+    
+ 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+   
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

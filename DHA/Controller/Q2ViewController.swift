@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Q2ViewController: UIViewController {
+class Q2ViewController: UIViewController , UITextFieldDelegate  {
 
     @IBOutlet weak var BtnCheckOther: CheckBox!
     @IBOutlet weak var BtnCheckProbertyDamage: CheckBox!
@@ -27,6 +27,12 @@ class Q2ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

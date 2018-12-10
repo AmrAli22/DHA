@@ -36,7 +36,7 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat = 3
+        let padding: CGFloat =  10
         let collectionViewSize = collectionView.frame.size.width - padding
         
         return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)

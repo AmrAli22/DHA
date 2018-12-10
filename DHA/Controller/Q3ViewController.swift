@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Q3ViewController: UIViewController {
+class Q3ViewController: UIViewController , UITextFieldDelegate {
     
     var Q3Answer = ""
     var Q3AnswerType = ""
@@ -63,6 +63,13 @@ class Q3ViewController: UIViewController {
         BtnHigh9.isEnabled = false
         BtnHigh9.backgroundColor = #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1).withAlphaComponent(0.20)
         
+    }
+    
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 
     override func didReceiveMemoryWarning() {

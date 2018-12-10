@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-class Q5ViewController: UIViewController {
+class Q5ViewController: UIViewController , UITextFieldDelegate  {
 
     
     @IBOutlet weak var BtnYes: CheckBox!
@@ -42,7 +42,30 @@ class Q5ViewController: UIViewController {
         
         
     }
-
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
+    
+    @IBAction func BtnYesPressed(_ sender: Any) {
+        self.TxtFieldNote.isHidden = true
+        self.BtnNo.isChecked = false
+        appDelegate.Q5_Answer = "Yes"
+        appDelegate.noteOfQ5 = ""
+        
+        
+    }
+    @IBAction func BtnnoWaspressed(_ sender: Any) {
+          self.TxtFieldNote.isHidden = false
+          self.BtnYes.isChecked = false
+          appDelegate.Q5_Answer = "No"
+        appDelegate.noteOfQ5 = self.TxtFieldNote.text
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,6 +74,7 @@ class Q5ViewController: UIViewController {
     @IBAction func BtnActConduct(_ sender: Any) {
     }
     @IBAction func BtnActSave(_ sender: Any) {
+        SendReport()
     }
 
     
@@ -67,16 +91,16 @@ class Q5ViewController: UIViewController {
         var  bearer = "Bearer "
         bearer += CurrentUserToken!
         
-          let url = "https://safty.herokuapp.com/api/v1/category/\(appDelegate.CatId)/reports"
+          let url = "https://safty.herokuapp.com/api/v1/category/\(appDelegate.CatId!)/reports"
         
         let header : [String: String] = [
             "Authorization" : bearer ,
             "Content-Type" : "application/json"
         ]
         
-        let Parametres : Parameters = [
-            "Q2_Answer" :   appDelegate.Q2_Answer ,
-            "Q4_Answer" : appDelegate.Q4_Answer  ,
+        let Parametres  = [
+            //"Q2_Answer" :   appDelegate.Q2_Answer ,
+            //"Q4_Answer" : appDelegate.Q4_Answer  ,
             "name" : appDelegate.name ,
             "Date" : appDelegate.Date ,
             "Time" : appDelegate.Time ,
@@ -86,19 +110,34 @@ class Q5ViewController: UIViewController {
             "Q5_Answer"  : appDelegate.Q5_Answer! ,
             "noteOfQ5"  : appDelegate.noteOfQ5! ,
             "location"  : appDelegate.location! ,
-            "id"        : appDelegate.id!
-            ] as [String : Any]
+            "id"        : appDelegate.CatId!
+            ]
         
         Alamofire.upload(multipartFormData: { (multipartFormData) in
             
+            var TestQ2Answer = [String]()
+            TestQ2Answer = self.appDelegate.Q2_Answer
+            for Next in TestQ2Answer {
+               multipartFormData.append("\(Next)".data(using: String.Encoding.utf8)!, withName: "Q2_Answer" as String)
+            }
             
-            for (key, value) in Parameters {
+            
+            var TestQ4Answer = [String]()
+            TestQ4Answer = self.appDelegate.Q4_Answer
+            for Next in TestQ4Answer {
+                multipartFormData.append("\(Next)".data(using: String.Encoding.utf8)!, withName: "Q4_Answer" as String)
+                
+            }
+            
+            print(TestQ2Answer)
+            print(TestQ4Answer)
+            
+           for (key, value) in Parametres {
             
              multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
              print("\(key)\(value)")
                 
              }
-            
             for image in self.appDelegate.img {
                 
                 let imageData : Data = UIImagePNGRepresentation(image)!
