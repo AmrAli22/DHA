@@ -83,6 +83,9 @@ class LoginViewController: UIViewController , UITextFieldDelegate {
                     
                     if let encoded = try? JSONEncoder().encode(NewUser) {
                     UserDefaults.standard.set(encoded, forKey: "kUser")
+                    self.performSegue(withIdentifier: "LoginGoHome", sender: nil)
+                        
+                        
 
                     }
 

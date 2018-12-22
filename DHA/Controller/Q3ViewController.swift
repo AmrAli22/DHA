@@ -10,6 +10,7 @@ import UIKit
 
 class Q3ViewController: UIViewController , UITextFieldDelegate {
     
+    @IBOutlet weak var TxtFieldResult: UITextView!
     var Q3Answer = ""
     var Q3AnswerType = ""
 
@@ -36,6 +37,22 @@ class Q3ViewController: UIViewController , UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        StateZero()
+
+    }
+    
+    func StateZero(){
+        
+        BtnLikLow1.isEnabled = true
+        BtnLikLow1.backgroundColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1)
+        
+        BtnLikMed2.isEnabled = true
+        BtnLikMed2.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1)
+        
+        BtnLikHigh3.isEnabled = true
+        BtnLikHigh3.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
         BtnLow1.isEnabled = false
         BtnLow1.backgroundColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1).withAlphaComponent(0.20)
         
@@ -44,10 +61,10 @@ class Q3ViewController: UIViewController , UITextFieldDelegate {
         
         BtnMedLow2.isEnabled = false
         BtnMedLow2.backgroundColor = #colorLiteral(red: 0, green: 0.5628422499, blue: 0.3188166618, alpha: 1).withAlphaComponent(0.20)
-    
+        
         BtnMed3.isEnabled = false
         BtnMed3.backgroundColor = #colorLiteral(red: 0.9013670087, green: 0.8889318109, blue: 0.006358571351, alpha: 1).withAlphaComponent(0.20)
-    
+        
         BtnMed4.isEnabled = false
         BtnMed4.backgroundColor = #colorLiteral(red: 0.9013670087, green: 0.8889318109, blue: 0.006358571351, alpha: 1).withAlphaComponent(0.20)
         
@@ -62,7 +79,6 @@ class Q3ViewController: UIViewController , UITextFieldDelegate {
         
         BtnHigh9.isEnabled = false
         BtnHigh9.backgroundColor = #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1).withAlphaComponent(0.20)
-        
     }
     
     
@@ -79,10 +95,12 @@ class Q3ViewController: UIViewController , UITextFieldDelegate {
     
     @IBAction func BtnLikLow1Pres(_ sender: Any) {
         
-        BtnLikMed2.isEnabled = false
-        BtnLikMed2.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).withAlphaComponent(0.20)
+        StateZero()
         
-        BtnLikHigh3.isEnabled = false
+       // BtnLikMed2.isEnabled = false
+        BtnLikMed2.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1).withAlphaComponent(0.20)
+        
+       // BtnLikHigh3.isEnabled = false
         BtnLikHigh3.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).withAlphaComponent(0.20)
         
         BtnLow1.isEnabled = true
@@ -97,10 +115,12 @@ class Q3ViewController: UIViewController , UITextFieldDelegate {
     }
     @IBAction func BtnLikMed2pres(_ sender: Any) {
         
-        BtnLikLow1.isEnabled = false
-        BtnLikLow1.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1).withAlphaComponent(0.20)
+        StateZero()
         
-        BtnLikHigh3.isEnabled = false
+       // BtnLikLow1.isEnabled = false
+        BtnLikLow1.backgroundColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1).withAlphaComponent(0.20)
+        
+       // BtnLikHigh3.isEnabled = false
         BtnLikHigh3.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).withAlphaComponent(0.20)
         
         BtnMedLow2.isEnabled = true
@@ -115,11 +135,13 @@ class Q3ViewController: UIViewController , UITextFieldDelegate {
     }
     @IBAction func BtnLikHigh3Pres(_ sender: Any) {
         
-        BtnLikLow1.isEnabled = false
-        BtnLikLow1.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1).withAlphaComponent(0.20)
+        StateZero()
         
-        BtnLikMed2.isEnabled = false
-        BtnLikMed2.backgroundColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1).withAlphaComponent(0.20)
+       // BtnLikLow1.isEnabled = false
+        BtnLikLow1.backgroundColor = #colorLiteral(red: 0.6642242074, green: 0.6642400622, blue: 0.6642315388, alpha: 1).withAlphaComponent(0.20)
+        
+       // BtnLikMed2.isEnabled = false
+        BtnLikMed2.backgroundColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1).withAlphaComponent(0.20)
         
         BtnMed5.isEnabled = true
         BtnMed5.backgroundColor = #colorLiteral(red: 0.9013670087, green: 0.8889318109, blue: 0.006358571351, alpha: 1)
@@ -136,42 +158,51 @@ class Q3ViewController: UIViewController , UITextFieldDelegate {
     @IBAction func BtnLow1press(_ sender: Any) {
         appDelegate.Q3_Answer = "low"
         appDelegate.valueOfQ3 = "1"
+        self.TxtFieldResult.text = "1 * 1 = 1 ( Low )"
         
     }
     @IBAction func BtnLow2Press(_ sender: Any) {
         appDelegate.Q3_Answer = "2"
         appDelegate.valueOfQ3 = "low"
+          self.TxtFieldResult.text = "1 * 2 = 2 ( Low )"
     }
     @IBAction func BtnMed3Press(_ sender: Any) {
        appDelegate.Q3_Answer = "3"
         appDelegate.valueOfQ3 = "Meduim"
+          self.TxtFieldResult.text = "1 * 3 = 3 ( Meduim )"
     }
     
    
     @IBAction func BtnMedLow2Press(_ sender: Any) {
        appDelegate.Q3_Answer = "2"
        appDelegate.valueOfQ3 = "low"
+          self.TxtFieldResult.text = "2 * 1 = 2 ( Meduim )"
     }
     @IBAction func BtnMedMed4Press(_ sender: Any) {
        appDelegate.Q3_Answer = "4"
         appDelegate.valueOfQ3 = "Meduim"
+          self.TxtFieldResult.text = "2 * 2 = 4 ( meduim )"
     }
     @IBAction func BtnMedHigh6Press(_ sender: Any) {
         appDelegate.Q3_Answer = "6"
         appDelegate.valueOfQ3 = "High"
+          self.TxtFieldResult.text = "2 * 3 = 6 ( High )"
     }
     
     
     @IBAction func BtnMed5Press(_ sender: Any) {
         appDelegate.Q3_Answer = "3"
         appDelegate.valueOfQ3 = "Meduim"
+          self.TxtFieldResult.text = "3 * 2 = 1 ( Meduim )"
     }
     @IBAction func BtnHigh6Press(_ sender: Any) {
         appDelegate.Q3_Answer = "6"
         appDelegate.valueOfQ3 = "High"
+          self.TxtFieldResult.text = "3 * 2 = 6 ( High )"
     }
     @IBAction func BtnHigh9Press(_ sender: Any) {
         appDelegate.Q3_Answer = "9"
        appDelegate.valueOfQ3 = "High"
+          self.TxtFieldResult.text = "3 * 3 = 9 ( High )"
     }
 }

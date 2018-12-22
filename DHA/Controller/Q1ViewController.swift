@@ -18,14 +18,16 @@ class Q1ViewController: UIViewController , UITextFieldDelegate  {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+    
         // Do any additional setup after loading the view.
     }
     
  
     @IBAction func FinishTyping(_ sender: Any) {
+    
         appDelegate.Q1_Answer = self.TxtFieldAnswer.text
-        print("Q1 = \(self.TxtFieldAnswer.text)" )
+        print("Q1 = \(self.TxtFieldAnswer.text!)" )
+        
     }
     
  

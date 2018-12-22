@@ -10,6 +10,9 @@ import UIKit
 
 class Q2ViewController: UIViewController , UITextFieldDelegate  {
 
+    
+    
+    @IBOutlet weak var TxtFieldOtherTypes: UITextField!
     @IBOutlet weak var BtnCheckOther: CheckBox!
     @IBOutlet weak var BtnCheckProbertyDamage: CheckBox!
     @IBOutlet weak var BtnCheckFacility: CheckBox!
@@ -22,7 +25,7 @@ class Q2ViewController: UIViewController , UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        TxtFieldOtherTypes.isHidden = true
         
         // Do any additional setup after loading the view.
     }
@@ -38,10 +41,22 @@ class Q2ViewController: UIViewController , UITextFieldDelegate  {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func BtnOtherPressed(_ sender: Any) {
+        if BtnCheckOther.isChecked == false {
+             TxtFieldOtherTypes.isHidden = false
+        }else{
+            TxtFieldOtherTypes.isHidden = true
+        }
+    }
     @IBAction func BtnNextPressed(_ sender: Any) {
         
+        appDelegate.Q2_Answer.removeAll()
+        
         if BtnCheckOther.isChecked {
-            self.Q2Answers.append("Other")
+            if TxtFieldOtherTypes.text == "" {
+            }else{
+                self.Q2Answers.append("\(TxtFieldOtherTypes.text!)")
+            }
         }
         if BtnCheckProbertyDamage.isChecked {
             self.Q2Answers.append("Proberty Damage")
@@ -60,6 +75,7 @@ class Q2ViewController: UIViewController , UITextFieldDelegate  {
         }
         
         appDelegate.Q2_Answer = self.Q2Answers
+        print(self.Q2Answers)
         
     }
     

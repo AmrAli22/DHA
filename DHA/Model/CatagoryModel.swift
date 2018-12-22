@@ -12,10 +12,10 @@ import UIKit
 struct CatagoryModel {
 
     var name : String
-    var img : UIImage
-    var id : String
+    var img : String
+    var id : Int
     
-    init(_name : String , _img : UIImage , _id : String ) {
+    init(_name : String , _img : String , _id : Int) {
         name = _name
         img = _img
         id = _id

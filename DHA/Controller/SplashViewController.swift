@@ -15,7 +15,7 @@ class SplashViewController: UIViewController {
         super.viewDidLoad()
         UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true)
         let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
-        let statusBarColor = #colorLiteral(red: 0.5807225108, green: 0.066734083, blue: 0, alpha: 1)
+        let statusBarColor = #colorLiteral(red: 0.8787010908, green: 0.3304585814, blue: 0.3257992268, alpha: 1).withAlphaComponent(0.4)
         statusBarView.backgroundColor = statusBarColor
         view.addSubview(statusBarView)
 

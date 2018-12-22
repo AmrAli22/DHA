@@ -1,111 +1,94 @@
 //
-//  StartRepViewController.swift
+//  ConuctViewController.swift
 //  DHA
 //
-//  Created by Sayed Abdo on 12/7/18.
+//  Created by Sayed Abdo on 12/11/18.
 //  Copyright © 2018 Hamza. All rights reserved.
 //
 
 import UIKit
-import BSImagePicker
 import Photos
+import BSImagePicker
 
-class StartRepViewController: UIViewController , UITextFieldDelegate {
+class ConuctViewController: UIViewController , UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @IBOutlet weak var TxtFieldLocation: UITextField!
-    @IBOutlet weak var TxtFieldRepName: UITextField!
-    @IBOutlet weak var DatePickerRepDate: UIDatePicker!
-    
-    var SelectedAssets = [PHAsset]()
-    var PhotoArray = [UIImage]()
-    var EmptyData = [Data]()
-    var ReportDate = ""
-    var ReportTime = ""
-    var ReportName = ""
-    var location   = ""
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var SelectedAssets = [PHAsset]()
+    var PhotoArray = [UIImage]()
     
-    
+    @IBOutlet weak var PickerViewCatgoris: UIPickerView!
+    var pickerData: [String] = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-        self.navigationController?.title = appDelegate.CatName
         
-        // Do any additional setup after loading the view.
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
+        for cat in appDelegate.CatagorisArr
+        {
+            pickerData.append(cat.name)
+        }
+        
+        
+        self.PickerViewCatgoris.delegate = self
+        self.PickerViewCatgoris.dataSource = self
+
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func BtnStartReportAct(_ sender: Any) {
-        
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yy"
-        self.ReportDate = dateFormatter.string(from: self.DatePickerRepDate.date)
-        
-        appDelegate.Date = dateFormatter.string(from: self.DatePickerRepDate.date)
-        
-        DatePickerRepDate.datePickerMode = UIDatePickerMode.time
-
-        let formatter = DateFormatter()
-        formatter.timeStyle = .medium
-        
-        formatter.dateFormat = "HH:mm"
-        let dateString = formatter.string(from: self.DatePickerRepDate.date)
-        print(dateString)
-        
-      /*  let date = Date()
-        
-        let calendar = Calendar.current
-        let comp = calendar.dateComponents([.hour, .minute , .am ], from: date)
-        let hour = comp.hour
-        let minute = comp.minute */
-        
-       // let ReportTimeHour = self.DatePickerRepDate.calendar.component(.hour, from: self.DatePickerRepDate.date)
-      //  let ReportTimeMin = self.DatePickerRepDate.calendar.component(.minute , from: self.DatePickerRepDate.date)
-      //  self.ReportTime = "\(hour) : \(minute)"
-        
-        
-        
-        appDelegate.name = self.TxtFieldRepName.text!
-        appDelegate.Date = dateFormatter.string(from: self.DatePickerRepDate.date)
-        appDelegate.location = self.TxtFieldLocation.text!
-        //appDelegate.Time = "\(hour!):\(minute!)"
-        appDelegate.Time = "\(dateString)"
-        appDelegate.img = PhotoArray
-       
+    
+    @IBAction func BtnPhotoAttachmentWasPressed(_ sender: Any) {
+        PickImages { (EndPicking) in
+            if  EndPicking {
+                print(self.PhotoArray)
+            }
+        }
+    
+    }
+    
+    @IBAction func BtnUploadAudioWasPressed(_ sender: Any) {
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    return 1
+    }
+    
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    return pickerData.count
+    }
+    
+    // The data to return fopr the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    return pickerData[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // This method is triggered whenever the user makes a change to the picker selection.
+        // The parameter named row and component represents what was selected.
+      print("PickerData.row = \(pickerData[row])")
+       appDelegate.CatId = appDelegate.CatagorisArr[row].id
+        print("appDelegate.CatId = \(appDelegate.CatagorisArr[row].id)")
         
     }
     
-    @IBAction func BtnActUploadPhotos(_ sender: Any) {
+    @IBAction func GoConductRepo(_ sender: Any) {
+      
+        appDelegate.img = PhotoArray
         
-        self.SelectedAssets.removeAll()
-        self.PhotoArray.removeAll()
-        PickImages { (DonePicking) in
-            if DonePicking {
-                print ("PhotosArrCount\(self.PhotoArray.count)")
-                
-                
-            }
-        }
+       // let nav = self.navigationController
+     //   let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyboard?.instantiateViewController(withIdentifier: "Q1ViewController") as! Q1ViewController
+      //  self.present(nextViewController, animated:true, completion:nil)
+        navigationController?.pushViewController(nextViewController, animated: true)
         
-    }//EndBTNACTUplioad
-
-    @IBAction func BtnActRecord(_ sender: Any) {
     }
-
     
     
     ///PickImages
-     
+    
     func PickImages(completionPicking : @escaping (_ finishedPicking: Bool) -> ()) {
         
         // create an instance
@@ -175,5 +158,5 @@ class StartRepViewController: UIViewController , UITextFieldDelegate {
             }
         }
     }
-}
 
+}

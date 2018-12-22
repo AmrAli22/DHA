@@ -30,7 +30,9 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellid, for: indexPath) as? CatagoryCollectionViewCell
         
-        cell?.configureCell(HazardImage: CatagoryArray[indexPath.row].img, HazardName: CatagoryArray[indexPath.row].name)
+        print(self.CatagoryArray)
+        
+        cell?.configureCell(HazardImage: self.DawnloadImage(url:  CatagoryArray[indexPath.row].img )                                            , HazardName: CatagoryArray[indexPath.row].name)
         
         return cell!
     }
@@ -47,7 +49,11 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
         if let cell = sender as? UICollectionViewCell,
             let indexPath = self.collectionView.indexPath(for: cell) {
         
+            
+            appDelegate.CatagorisArr = self.CatagoryArray
+            
             appDelegate.CatId = CatagoryArray[indexPath.row].id
+            appDelegate.CatName = CatagoryArray[indexPath.row].name
         }
     }
     
@@ -59,8 +65,8 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
 
         collectionView.delegate = self
         collectionView.dataSource = self
-       // GetGatagorisWithAlamoFire()
-        
+        GetGatagorisWithAlamoFire()
+       /*
         let Fire = CatagoryModel.init(_name: "fire", _img : UIImage(named:"fire")!, _id: "1")
         let antibiotic = CatagoryModel.init(_name: "antibiotic", _img : UIImage(named:"antibiotic")!, _id: "2")
         let flash = CatagoryModel.init(_name: "flash", _img : UIImage(named:"flash")!, _id: "3")
@@ -80,7 +86,7 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
         self.CatagoryArray.append(pressure)
         self.CatagoryArray.append(chemical)
         self.CatagoryArray.append(thermo)
-        
+        */
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,8 +101,49 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
         return UIImage(data: data!)!
     }
     
-    
+    @IBAction func BtnMakeEmergCall(_ sender: Any) {
     /*
+        let decoder = JSONDecoder()
+        let _CurrentUser = UserDefaults.standard.data(forKey: "kUser")
+        let CurrentUser = try? decoder.decode(UserModel.self, from: _CurrentUser!)
+        let CurrentUserEmergencyNum = CurrentUser?.emergencyNo
+        
+        guard let phoneUrl: NSURL = NSURL(string: "telprompt:\(CurrentUserEmergencyNum)")!
+            else{
+            let alert = UIAlertController(title: "Alert", message: "No Emergency Phone Found", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                switch action.style{
+                case .default:
+                    print("default")
+                    
+                case .cancel:
+                    print("cancel")
+                    
+                case .destructive:
+                    print("destructive")
+                    
+                    
+                }}))
+            self.present(alert, animated: true, completion: nil)
+        }
+        print(phoneUrl)
+        if UIApplication.shared.canOpenURL(phoneUrl as URL ) {
+            UIApplication.shared.openURL(phoneUrl as URL)
+        
+        }else{
+            print("CantOpenURL")
+        } */
+    }
+        
+     /*   extension UIViewController {
+            
+            func alert(message: String, title: String = "") {
+                let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(OKAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+        } */
     func GetGatagorisWithAlamoFire(){
         
         let decoder = JSONDecoder()
@@ -104,9 +151,7 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
         let CurrentUser = try? decoder.decode(UserModel.self, from: _CurrentUser!)
         print ("\(CurrentUser)")
         let CurrentUserToken = CurrentUser?.token
-        
-        
-        
+
         var  bearer = "Bearer "
         bearer += CurrentUserToken!
         
@@ -119,22 +164,24 @@ class CatagorisViewController: UIViewController , UICollectionViewDelegate , UIC
         
         Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: header).responseJSON { (responseData) -> Void in
             if((responseData.result.value) != nil) {
+                
                 let swiftyJsonVar = JSON(responseData.result.value!).arrayObject
                 
                     self.testCatArray = swiftyJsonVar as! [[String:AnyObject]]
-               print("\(self.testCatArray)")
+                        print("test\(self.testCatArray)")
                     for NextCat in self.testCatArray {
-                        let imgAsImage = self.DawnloadImage(url: (NextCat["img"] as! String))
-                        let imageData: Data = UIImagePNGRepresentation(imgAsImage)! /*self.adc_role_id = String(describing: res["adc_role_id"])
-*/
+                     //   let imageData: Data = UIImagePNGRepresentation(imgAsImage)! /*self.adc_role_id = String(describing: res["adc_role_id"])
+
                         let NewCatagory = CatagoryModel.init(_name: NextCat["name"] as! String,
-                                                             _img: imageData,
-                                                             _id: String(describing: NextCat["id"]))
+                                                             _img: NextCat["img"] as! String,
+                                                             _id: NextCat["id"] as! Int
+                                                    )
                         self.CatagoryArray.append(NewCatagory)
                         
-                  print ("\(NewCatagory)")
+                  print ("new\(NewCatagory)")
                 }
+                 self.collectionView.reloadData()
             }
         }
-    } */
+    }
 }

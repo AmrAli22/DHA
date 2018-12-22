@@ -10,6 +10,7 @@ import UIKit
 
 class Q4ViewController: UIViewController , UITextFieldDelegate  {
 
+    @IBOutlet weak var TxtFeildOthers: UITextField!
     
     @IBOutlet weak var BtnEngineering: CheckBox!
     @IBOutlet weak var BtnAdministrative: CheckBox!
@@ -23,7 +24,7 @@ class Q4ViewController: UIViewController , UITextFieldDelegate  {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+       TxtFeildOthers.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,21 +32,39 @@ class Q4ViewController: UIViewController , UITextFieldDelegate  {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func BtnOtherWasPressed(_ sender: Any) {
+        
+        if BtnOther.isChecked {
+            if TxtFeildOthers.text == "" {
+            }else{
+                self.Q4Answer.append("\(TxtFeildOthers.text!)")
+            }
+        }
+    }
+    
+    
     @IBAction func BtnActNext(_ sender: Any) {
+        
+        appDelegate.Q4_Answer.removeAll()
+        
         if BtnEngineering.isChecked {
-            self.Q4Answer.append("Engineering")
+           self.appDelegate.Q4_Answer.append("Engineering")
             
         }
         
         if BtnAdministrative.isChecked {
-            self.Q4Answer.append("Administrative")
+            self.appDelegate.Q4_Answer.append("Administrative")
         }
         
         if BtnPPE.isChecked {
-            self.Q4Answer.append("PPE")
+            self.appDelegate.Q4_Answer.append("PPE")
         }
         if BtnOther.isChecked {
-            self.Q4Answer.append("Other")
+            if TxtFeildOthers.text! == "" {
+                
+            }else{
+               self.appDelegate.Q4_Answer.append(TxtFeildOthers.text!)
+            }
         }
         
     }
@@ -59,14 +78,5 @@ class Q4ViewController: UIViewController , UITextFieldDelegate  {
     @IBAction func BtnActNexWasPressed(_ sender: Any) {
         appDelegate.Q4_Answer = self.Q4Answer
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+

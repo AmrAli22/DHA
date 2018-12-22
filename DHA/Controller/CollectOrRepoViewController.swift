@@ -11,11 +11,13 @@ import UIKit
 class CollectOrRepoViewController: UIViewController {
 
     var ReceivedCatagoryID : String = ""
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
 print(self.ReceivedCatagoryID)
         // Do any additional setup after loading the view.
+        self.navigationController?.title = appDelegate.CatName
     }
 
     override func didReceiveMemoryWarning() {

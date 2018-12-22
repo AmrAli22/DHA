@@ -9,10 +9,14 @@
 /* Begin PBXBuildFile section */
 		1605896221B43784005DAC7D /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1605896121B43784005DAC7D /* EditProfileViewController.swift */; };
 		1605896421B437EB005DAC7D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1605896321B437EB005DAC7D /* ChangePasswordViewController.swift */; };
+		16099CC421C2028600965D8F /* FullReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16099CC321C2028400965D8F /* FullReportViewController.swift */; };
+		16099CC621C20BF900965D8F /* FullReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16099CC521C20BF900965D8F /* FullReportTableViewCell.swift */; };
 		161038DF21BD45F800538664 /* Q2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161038DE21BD45F800538664 /* Q2ViewController.swift */; };
 		161038E121BD48DF00538664 /* Q3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161038E021BD48DF00538664 /* Q3ViewController.swift */; };
 		161038E321BD597D00538664 /* Q4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161038E221BD597D00538664 /* Q4ViewController.swift */; };
 		161038E521BD5C4A00538664 /* Q5ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161038E421BD5C4A00538664 /* Q5ViewController.swift */; };
+		1612131C21C057E300B2F7C0 /* RepoDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1612131B21C057E300B2F7C0 /* RepoDetails.swift */; };
+		1612131E21C05DC400B2F7C0 /* RepoDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1612131D21C05DC400B2F7C0 /* RepoDetailsTableViewCell.swift */; };
 		1616DAAF21A2DAAE00CC0431 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1616DAAE21A2DAAE00CC0431 /* AppDelegate.swift */; };
 		1616DAB121A2DAAE00CC0431 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1616DAB021A2DAAE00CC0431 /* FirstViewController.swift */; };
 		1616DAB321A2DAAE00CC0431 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1616DAB221A2DAAE00CC0431 /* SecondViewController.swift */; };
@@ -28,6 +32,7 @@
 		1616DB0321A2F23500CC0431 /* DesginableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1616DB0221A2F23500CC0431 /* DesginableView.swift */; };
 		161832CE21B7F22C0027C52E /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161832CD21B7F22C0027C52E /* CheckBox.swift */; };
 		16187EF021ADCECE0065D532 /* CatagorisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16187EEF21ADCECD0065D532 /* CatagorisViewController.swift */; };
+		161D6EE321CB0A0600436C9B /* Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161D6EE221CB0A0600436C9B /* Details.swift */; };
 		1620F6C821BBA2E9009D9565 /* CollectOrRepoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1620F6C721BBA2E9009D9565 /* CollectOrRepoViewController.swift */; };
 		16284E1B21BB619400B0F38B /* Report Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16284E1A21BB619400B0F38B /* Report Model.swift */; };
 		16284E1D21BB6C9100B0F38B /* StartRepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16284E1C21BB6C9100B0F38B /* StartRepViewController.swift */; };
@@ -37,7 +42,12 @@
 		1659B2F821B2E5E9006BB1A7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1659B2F721B2E5E9006BB1A7 /* ProfileViewController.swift */; };
 		1659F2B021AED31500EE5751 /* CatagoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1659F2AF21AED31500EE5751 /* CatagoryModel.swift */; };
 		1659F2B221AEE7ED00EE5751 /* CatagoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1659F2B121AEE7ED00EE5751 /* CatagoryCollectionViewCell.swift */; };
+		165B6D7F21BFBFB900F831A4 /* ConuctViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165B6D7E21BFBFB900F831A4 /* ConuctViewController.swift */; };
+		165B6D8121C0140000F831A4 /* SavedReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165B6D8021C013FF00F831A4 /* SavedReportViewController.swift */; };
 		165F36F821B500AE00175244 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165F36F721B500AE00175244 /* CameraHandler.swift */; };
+		169225C121C156E4002C74AE /* CollectDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169225C021C156E3002C74AE /* CollectDataViewController.swift */; };
+		16B7C47121CC15710094BB49 /* FullAlbumAttatchmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B7C47021CC15710094BB49 /* FullAlbumAttatchmentViewController.swift */; };
+		16B7C47321CC1BD80094BB49 /* AlbumImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B7C47221CC1BD80094BB49 /* AlbumImagesCollectionViewCell.swift */; };
 		5F09A62E4BB16187F09533DD /* Pods_DHA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38EB11439A19FEC3C49D014E /* Pods_DHA.framework */; };
 		FBE0EFB9736E94D8BACB2844 /* Pods_DHATests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 847EBCE4DA3E2B8DCF8E00DD /* Pods_DHATests.framework */; };
 		FC0D470300B2817282A91592 /* Pods_DHAUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E369936154022CA2D093708 /* Pods_DHAUITests.framework */; };
@@ -63,10 +73,14 @@
 /* Begin PBXFileReference section */
 		1605896121B43784005DAC7D /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		1605896321B437EB005DAC7D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		16099CC321C2028400965D8F /* FullReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullReportViewController.swift; sourceTree = "<group>"; };
+		16099CC521C20BF900965D8F /* FullReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullReportTableViewCell.swift; sourceTree = "<group>"; };
 		161038DE21BD45F800538664 /* Q2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q2ViewController.swift; sourceTree = "<group>"; };
 		161038E021BD48DF00538664 /* Q3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q3ViewController.swift; sourceTree = "<group>"; };
 		161038E221BD597D00538664 /* Q4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q4ViewController.swift; sourceTree = "<group>"; };
 		161038E421BD5C4A00538664 /* Q5ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Q5ViewController.swift; sourceTree = "<group>"; };
+		1612131B21C057E300B2F7C0 /* RepoDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetails.swift; sourceTree = "<group>"; };
+		1612131D21C05DC400B2F7C0 /* RepoDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		1616DAAB21A2DAAD00CC0431 /* DHA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DHA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1616DAAE21A2DAAE00CC0431 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1616DAB021A2DAAE00CC0431 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +110,7 @@
 		1616DB0221A2F23500CC0431 /* DesginableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesginableView.swift; sourceTree = "<group>"; };
 		161832CD21B7F22C0027C52E /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		16187EEF21ADCECD0065D532 /* CatagorisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagorisViewController.swift; sourceTree = "<group>"; };
+		161D6EE221CB0A0600436C9B /* Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Details.swift; sourceTree = "<group>"; };
 		1620F6C721BBA2E9009D9565 /* CollectOrRepoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectOrRepoViewController.swift; sourceTree = "<group>"; };
 		16284E1A21BB619400B0F38B /* Report Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Report Model.swift"; sourceTree = "<group>"; };
 		16284E1C21BB6C9100B0F38B /* StartRepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRepViewController.swift; sourceTree = "<group>"; };
@@ -105,7 +120,12 @@
 		1659B2F721B2E5E9006BB1A7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1659F2AF21AED31500EE5751 /* CatagoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryModel.swift; sourceTree = "<group>"; };
 		1659F2B121AEE7ED00EE5751 /* CatagoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		165B6D7E21BFBFB900F831A4 /* ConuctViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConuctViewController.swift; sourceTree = "<group>"; };
+		165B6D8021C013FF00F831A4 /* SavedReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedReportViewController.swift; sourceTree = "<group>"; };
 		165F36F721B500AE00175244 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
+		169225C021C156E3002C74AE /* CollectDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectDataViewController.swift; sourceTree = "<group>"; };
+		16B7C47021CC15710094BB49 /* FullAlbumAttatchmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAlbumAttatchmentViewController.swift; sourceTree = "<group>"; };
+		16B7C47221CC1BD80094BB49 /* AlbumImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		1CB33EE13596681E8ED88A4C /* Pods-DHAUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DHAUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DHAUITests/Pods-DHAUITests.release.xcconfig"; sourceTree = "<group>"; };
 		38EB11439A19FEC3C49D014E /* Pods_DHA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DHA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E369936154022CA2D093708 /* Pods_DHAUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DHAUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +228,8 @@
 				1659F2AF21AED31500EE5751 /* CatagoryModel.swift */,
 				16284E1A21BB619400B0F38B /* Report Model.swift */,
 				164FB9C421AABA86004873E7 /* UserModel.swift */,
+				1612131B21C057E300B2F7C0 /* RepoDetails.swift */,
+				161D6EE221CB0A0600436C9B /* Details.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,6 +242,9 @@
 				1616DB0221A2F23500CC0431 /* DesginableView.swift */,
 				1659F2B121AEE7ED00EE5751 /* CatagoryCollectionViewCell.swift */,
 				161832CD21B7F22C0027C52E /* CheckBox.swift */,
+				1612131D21C05DC400B2F7C0 /* RepoDetailsTableViewCell.swift */,
+				16099CC521C20BF900965D8F /* FullReportTableViewCell.swift */,
+				16B7C47221CC1BD80094BB49 /* AlbumImagesCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -242,6 +267,11 @@
 				161038E021BD48DF00538664 /* Q3ViewController.swift */,
 				161038E221BD597D00538664 /* Q4ViewController.swift */,
 				161038E421BD5C4A00538664 /* Q5ViewController.swift */,
+				165B6D7E21BFBFB900F831A4 /* ConuctViewController.swift */,
+				165B6D8021C013FF00F831A4 /* SavedReportViewController.swift */,
+				169225C021C156E3002C74AE /* CollectDataViewController.swift */,
+				16099CC321C2028400965D8F /* FullReportViewController.swift */,
+				16B7C47021CC15710094BB49 /* FullAlbumAttatchmentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -529,17 +559,26 @@
 			files = (
 				161038DF21BD45F800538664 /* Q2ViewController.swift in Sources */,
 				1620F6C821BBA2E9009D9565 /* CollectOrRepoViewController.swift in Sources */,
+				16B7C47121CC15710094BB49 /* FullAlbumAttatchmentViewController.swift in Sources */,
+				16099CC621C20BF900965D8F /* FullReportTableViewCell.swift in Sources */,
 				161832CE21B7F22C0027C52E /* CheckBox.swift in Sources */,
 				1605896221B43784005DAC7D /* EditProfileViewController.swift in Sources */,
 				16284E1F21BB785C00B0F38B /* Q1ViewController.swift in Sources */,
+				165B6D7F21BFBFB900F831A4 /* ConuctViewController.swift in Sources */,
 				16284E1B21BB619400B0F38B /* Report Model.swift in Sources */,
 				1616DAB321A2DAAE00CC0431 /* SecondViewController.swift in Sources */,
 				164FB9C321AAB82F004873E7 /* SignupViewController.swift in Sources */,
+				169225C121C156E4002C74AE /* CollectDataViewController.swift in Sources */,
 				164FB9C521AABA86004873E7 /* UserModel.swift in Sources */,
 				1616DAAF21A2DAAE00CC0431 /* AppDelegate.swift in Sources */,
 				1616DAB121A2DAAE00CC0431 /* FirstViewController.swift in Sources */,
+				161D6EE321CB0A0600436C9B /* Details.swift in Sources */,
+				165B6D8121C0140000F831A4 /* SavedReportViewController.swift in Sources */,
 				165F36F821B500AE00175244 /* CameraHandler.swift in Sources */,
+				16B7C47321CC1BD80094BB49 /* AlbumImagesCollectionViewCell.swift in Sources */,
 				1659F2B021AED31500EE5751 /* CatagoryModel.swift in Sources */,
+				1612131C21C057E300B2F7C0 /* RepoDetails.swift in Sources */,
+				1612131E21C05DC400B2F7C0 /* RepoDetailsTableViewCell.swift in Sources */,
 				161038E321BD597D00538664 /* Q4ViewController.swift in Sources */,
 				161038E521BD5C4A00538664 /* Q5ViewController.swift in Sources */,
 				1616DB0121A2F0EC00CC0431 /* LoginViewController.swift in Sources */,
@@ -549,6 +588,7 @@
 				1659B2F821B2E5E9006BB1A7 /* ProfileViewController.swift in Sources */,
 				1659F2B221AEE7ED00EE5751 /* CatagoryCollectionViewCell.swift in Sources */,
 				16284E1D21BB6C9100B0F38B /* StartRepViewController.swift in Sources */,
+				16099CC421C2028600965D8F /* FullReportViewController.swift in Sources */,
 				16187EF021ADCECE0065D532 /* CatagorisViewController.swift in Sources */,
 				1605896421B437EB005DAC7D /* ChangePasswordViewController.swift in Sources */,
 			);

@@ -12,8 +12,9 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    var CatId : String?
+    
+    var CatagorisArr : [CatagoryModel] = []
+    var CatId : Int?
     var img : [UIImage] = []
     var PDF : [Data] = []
     var Vedio = [Data]()
@@ -29,7 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var Q5_Answer : String?
     var noteOfQ5  : String?
     var location  : String?
-    var id        : String?
+    var id        : Int?
+    var CatName   : String?
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

@@ -14,6 +14,7 @@ import SwiftyJSON
 
 class SignupViewController: UIViewController , UITextFieldDelegate {
     
+    @IBOutlet weak var ImgViewPP: UIButton!
     @IBOutlet weak var ScrollView: UIScrollView!
     @IBOutlet weak var BtnUploadPP: UIButton!
     
@@ -50,7 +51,7 @@ class SignupViewController: UIViewController , UITextFieldDelegate {
         self.TxtFieldPassword.delegate = self
         self.TxtFieldPassword.placeholder = "Password"
         self.TxtFieldUserName.delegate = self
-        self.TxtFieldUserName.placeholder = "User anem"
+        self.TxtFieldUserName.placeholder = "User name"
         
         self.ScrollView.contentSize =  CGSize(width: self.view.frame.size.width , height: 900)
 
@@ -86,68 +87,82 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         "emergencyNo" : user.emergencyNo ,
         ]
         
+        
+        let header : [String: String] = [
+            "Content-Type" : "application/json"
+        ]
+        
+        
+        var alamoFireManager : SessionManager?
+        let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = 10
+            configuration.timeoutIntervalForResource = 10
+            alamoFireManager = Alamofire.SessionManager(configuration: configuration)
+
+        
         let URL =  "https://safty.herokuapp.com/api/v1/signup"
     
         let imageData = UIImagePNGRepresentation(self.PPImage)
-        
-        Alamofire.upload(multipartFormData: { (multipartFormData) in
-            for (key, value) in parameters {
-                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
-            }
             
-         let data = imageData
-            multipartFormData.append(data!, withName: "img", fileName: "ProfilePicture.png", mimeType: "image/png")
-            
-            
-            
-        }, usingThreshold: UInt64.init(), to: URL, method: .post) { (result) in
-            print (result)
-            switch result{
-            case .success(let upload, _, _):
-                upload.responseJSON { (responseData) -> Void in
-                    if((responseData.result.value) != nil) {
-                        let json = JSON(responseData.result.value!)
-                      
-                      //  print ("swiftyJSONVar\(swiftyJsonVar)")
-                        /*  let json = JSON(data)
-                         let name = json["user"]["name"] */
-                        
-                        let name  = json["user"]["name"].stringValue
-                        let phone = json["user"]["phone"].stringValue
-                        let email = json["user"]["email"].stringValue
-                        let id    = json["user"]["id"].stringValue
-                        let imgString   = json["user"]["img"].stringValue
-                            
-                        let Token = json["token"].stringValue
-                        
-                        let imgAsImage = self.DawnloadImage(url: imgString)
-                        let imageData: Data = UIImagePNGRepresentation(imgAsImage)!
-                            
-                            
-                        let CurrUser = UserModel(name: name, password: "", phone: phone, email: email, img: imageData, emergencyNo: "" , id: "\(id)" , token: Token)
-                            
-                            print("THENEWSIGNUPUSER = \(CurrUser)")
-                            
-                            if let encoded = try? JSONEncoder().encode(CurrUser) {
-                             UserDefaults.standard.set(encoded, forKey: "kUser")
-                        
-                    }
-                }
-                    
-                    if let err = responseData.error{
-                        
-                        print(err)
-                        return
-                    }
-                    
-                }
-            case .failure(let error):
-                print("Error in upload: \(error.localizedDescription)")
+            Alamofire.upload(multipartFormData:{ multipartFormData in
                 
+                for (key, value) in parameters {
+                    
+                        multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as String)
+                }
+                
+                let data = imageData
+                multipartFormData.append(data!, withName: "img", fileName: "ProfilePicture.png", mimeType: "image/png")
             }
-        }
-        
+          ,    usingThreshold:UInt64.init(),
+                             to:URL,
+                             method:.post,
+                             headers : header,
+                             encodingCompletion: { encodingResult in
+                                switch encodingResult {
+                                case .success(let upload, _, _):
+                                    upload.responseJSON { responseData in
+                                        print("StatuesCode =  \(String(describing: responseData.response?.statusCode)) ")
+                                        print("responseValue =  \(responseData.result.value) ")
+                                        
+                                        if(responseData.result.value != nil ) {
+                                            let json = JSON(responseData.result.value!)
+                                            
+                                            print ("swiftyJSONVar\(json)")
+                                            /*  let json = JSON(data)
+                                             let name = json["user"]["name"] */
+                                            
+                                            let name  = json["user"]["name"].stringValue
+                                            let phone = json["user"]["phone"].stringValue
+                                            let email = json["user"]["email"].stringValue
+                                            let id    = json["user"]["id"].stringValue
+                                            let imgString   = json["user"]["img"].stringValue
+                                            
+                                            let Token = json["token"].stringValue
+                                            
+                                            let imgAsImage = self.DawnloadImage(url: imgString)
+                                            let imageData: Data = UIImagePNGRepresentation(imgAsImage)!
+                                            
+                                            
+                                            let CurrUser = UserModel(name: name, password: "", phone: phone, email: email, img: imageData, emergencyNo: "" , id: "\(id)" , token: Token)
+                                            
+                                            print("THENEWSIGNUPUSER = \(CurrUser)")
+                                            
+                                            if let encoded = try? JSONEncoder().encode(CurrUser) {
+                                                UserDefaults.standard.set(encoded, forKey: "kUser")
+                                                
+                                                self.performSegue(withIdentifier: "SignupGoHome" , sender: nil )
+                                                
+                                            }
+                                        }
+                                    }
+                                case .failure(let encodingError):
+                                    print(encodingError)
+                                }
+            })
     }
+        ///////////
+   
     
     
     ///////////// Pick a PP
@@ -238,16 +253,17 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         
         CameraHandler.shared.showActionSheet(vc: self)
-        CameraHandler.shared.imagePickedBlock = { (image) in
+        CameraHandler.shared.imagePickedBlock = { (Ximage) in
             /* get your image here */
-            self.PPImage = image
+            self.PPImage = Ximage
+            self.ImgViewPP.setImage(Ximage, for: UIControlState.normal)
         }
     }
     
     
     @IBAction func BtnActLogin(_ sender: Any) {
         
-        let imageData: Data = UIImagePNGRepresentation(PhotoArray.first!)!
+        let imageData: Data = UIImagePNGRepresentation(self.PPImage)!
         
         let NewUser = UserModel(name:  TxtFieldUserName.text!, password: TxtFieldPassword.text!, phone: TxtFieldPhone.text!, email: TxtFieldEmail.text!, img: imageData
             , emergencyNo: TxtFieldEmrgNum.text!, id: "" ,token: "")
